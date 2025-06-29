@@ -52,11 +52,14 @@ function App() {
     setShowAddPlayer(true);
   };
 
-  const addPlayer = (player) => {
-    const newPlayer = {
-      id: Math.floor(Math.random() * 1000),
-      ...player,
-    };
+const addPlayer = (player) => {
+  const newId = players.length > 0 ? Math.max(...players.map(p => p.id)) + 1 : 1;
+
+  const newPlayer = {
+    id: newId,
+    ...player,
+  };
+  
     const updatedPlayers = [...players, newPlayer];
     setPlayers(updatedPlayers);
     setShowAddPlayer(false);
